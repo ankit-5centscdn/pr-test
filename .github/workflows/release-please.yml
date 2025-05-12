@@ -1,11 +1,12 @@
 on:
   push:
     branches:
-      - main
+      - staging
 
 permissions:
   contents: write
   pull-requests: write
+  issues: write
 
 name: release-please
 
@@ -17,29 +18,11 @@ jobs:
         with:
           # this assumes that you have created a personal access token
           # (PAT) and configured it as a GitHub action secret named
-          # `MY_RELEASE_PLEASE_TOKEN` (this secret name is not important).
+          # MY_RELEASE_PLEASE_TOKEN (this secret name is not important).
           token: ${{ secrets.GITHUB_TOKEN }}
           # this is a built-in strategy in release-please, see "Action Inputs"
           # for more options
           release-type: php
+          target-branch: staging
+          # optional. customize path to .release-please-manifest.json
           manifest-file: .release-please-manifest.json
-
-
-
-# on:
-#   push:
-#     branches:
-#       - staging
- 
- 
-#         with:
-#           # this assumes that you have created a personal access token
-#           # (PAT) and configured it as a GitHub action secret named
-#           # MY_RELEASE_PLEASE_TOKEN (this secret name is not important).
-#           token: ${{ secrets.GITHUB_TOKEN }}
-#           # this is a built-in strategy in release-please, see "Action Inputs"
-#           # for more options
-#           release-type: node
-#           target-branch: staging
-#           # optional. customize path to .release-please-manifest.json
-#           manifest-file: .release-please-manifest.json
